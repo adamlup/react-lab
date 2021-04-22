@@ -6,33 +6,52 @@ import { Colors } from '../../styledHelpers/Colors';
 import { ExpandedMenu } from './ExpandedMenu';
 
 const Wrapper2 = styled(Wrapper)`
-    height: 100px;
+    display: flex;
+    height: 50px;
+    background: lightblue;
+    justify-content: center;
 `;
 
 const InnerWrapper = styled.div`
+    display: flex;
+    justify-content: center;
     width: 100%;
-    height: 80px;
-    background: ${Colors.white};
+    height: 25px;
+    background: lightblue;
 `;
 
 const RightIcons = styled.div`
+    padding-left: 600px;
     display: flex;
 `;
 
-const InputWrapper = styled.div`
-
+const LeftIcons = styled.div`
 `;
 
-const CustomImg = styled.img``;
+
+const InputWrapper = styled.div`
+    display: flex;
+    padding-left: 500px;
+`;
+
+const CustomImg = styled.img`
+    padding-right: 10px;
+`;
 
 const CustomInput = styled.input`
+    text-align: center;
+    width: 500px;
     background: ${Colors.white};
 `;
+
 
 export const TopNav: FC = () =>{
     return(
         <Wrapper2>
             <InnerWrapper>
+                <LeftIcons>
+                    <CustomImg src="./media/icons/house2.png" />
+                </LeftIcons>
                 <div>
                     <ExpandedMenu />
                 </div>

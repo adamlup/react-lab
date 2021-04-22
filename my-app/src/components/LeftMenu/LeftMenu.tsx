@@ -1,18 +1,87 @@
 import { FC } from 'React';
 import styled from 'styled-components';
 
-const LowerIcons = styled.div`
-    align-items: center;
+import { Wrapper } from '../../styledHelpers/Components';
+import { Colors } from '../../styledHelpers/Colors';
+
+const Wrapper2 = styled(Wrapper)`
+    height: 100px;
 `;
 
-const CustomImg = styled.img``;
+const InnerWrapper = styled.div`
+    width: 300px;
+    background: ${Colors.white};
+`;
+
+const LowerIcons = styled.div`
+    align-items: center;
+    padding-top: 10px;
+`;
+
+const CustomImg = styled.img`
+    padding-left: 20px;
+`;
+
+const Profile = styled.div`
+    width: 200px;
+    border: 1px solid black;
+    background: white;
+`;
+
+const ProfileImg = styled.img``;
+
+const ProfileContainer = styled.div`
+    padding-left: 10px;
+`;
+
+const ProfileLeftIcons = styled.img`
+    padding-left: 10px;
+`;
+
+const ProfileRightIcons = styled.img`
+    float:right;
+`;
+
+const ProfileRightIconsContainer = styled.div`
+    float:right;
+    border: groove;
+`;
+
+const ProfileImgContainer = styled.div`
+    text-align:center;
+`;
 
 export const LeftMenu: FC = () => {
     return(
+        <InnerWrapper>
+            <ProfileContainer>
+                <Profile>
+                    <ProfileImgContainer>
+                        <ProfileImg src="./media/icons/administration.png" /> 
+                    </ProfileImgContainer>
+                    <div>Humberta Swift</div>
+                    <div>Job title - Company</div>
+                    <LowerIcons>
+                        <ProfileLeftIcons src="./media/icons/network.png" /> 
+                        Your Network    
+                        <ProfileRightIconsContainer><ProfileRightIcons src="./media/icons/user-plus.png" /></ProfileRightIconsContainer>
+                    </LowerIcons>
+                    <LowerIcons>
+                        <ProfileLeftIcons src="./media/icons/publications.png" /> 
+                        Your Publications     
+                        <ProfileRightIconsContainer><ProfileRightIcons src="./media/icons/plus.png" /> </ProfileRightIconsContainer>
+                    </LowerIcons>
+                </Profile>
+            </ProfileContainer>
             <LowerIcons>
-                <CustomImg src="./media/icons/publications.png" />
-                <CustomImg src="./media/icons/ecosystem.png" />
-                <CustomImg src="./media/icons/entities.png" />
+                <CustomImg src="./media/icons/publications.png" /> Publications
             </LowerIcons>
+            <LowerIcons>
+                <CustomImg src="./media/icons/ecosystem.png" /> Ecosystem
+            </LowerIcons>
+            <LowerIcons>
+                <CustomImg src="./media/icons/entities.png" /> Entities
+            </LowerIcons>
+        </InnerWrapper>
     );
 };
