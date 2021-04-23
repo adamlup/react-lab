@@ -10,29 +10,28 @@ const Wrapper2 = styled(Wrapper)`
 
 const InnerWrapper = styled.div`
     width: 300px;
+    margin-top: 15px;
     background: ${Colors.white};
 `;
 
 const LowerIcons = styled.div`
     align-items: center;
-    padding-top: 10px;
+    padding-top: 20px;
 `;
 
 const CustomImg = styled.img`
-    padding-left: 20px;
+    margin-left: 20px;
 `;
 
 const Profile = styled.div`
     width: 200px;
-    border: 1px solid black;
     background: white;
+    margin-left: 10px;
+    box-shadow: 1px 3px 5px lightgrey;
 `;
 
 const ProfileImg = styled.img``;
 
-const ProfileContainer = styled.div`
-    padding-left: 10px;
-`;
 
 const ProfileLeftIcons = styled.img`
     padding-left: 10px;
@@ -45,22 +44,34 @@ const ProfileRightIcons = styled.img`
 const ProfileRightIconsContainer = styled.div`
     float:right;
     border: groove;
+    margin-right: 5px;
 `;
 
 const ProfileImgContainer = styled.div`
-    text-align:center;
+    height: 50px;
+    width: 50px;
+    background: black;
+    border-radius: 50%;
+    margin-left: 75px;
+`;
+
+const ProfileName = styled.div`
+    text-align: center;
+`;
+
+const ProfileJob = styled.div`
+    text-align: center;
 `;
 
 export const LeftMenu: FC = () => {
     return(
         <InnerWrapper>
-            <ProfileContainer>
                 <Profile>
                     <ProfileImgContainer>
-                        <ProfileImg src="./media/icons/administration.png" /> 
+                        
                     </ProfileImgContainer>
-                    <div>Humberta Swift</div>
-                    <div>Job title - Company</div>
+                    <ProfileName>Humberta Swift</ProfileName>
+                    <ProfileJob>Job title - Company</ProfileJob>
                     <LowerIcons>
                         <ProfileLeftIcons src="./media/icons/network.png" /> 
                         Your Network    
@@ -72,7 +83,6 @@ export const LeftMenu: FC = () => {
                         <ProfileRightIconsContainer><ProfileRightIcons src="./media/icons/plus.png" /> </ProfileRightIconsContainer>
                     </LowerIcons>
                 </Profile>
-            </ProfileContainer>
             <LowerIcons>
                 <CustomImg src="./media/icons/publications.png" /> Publications
             </LowerIcons>

@@ -7,31 +7,35 @@ import { ExpandedMenu } from './ExpandedMenu';
 
 const Wrapper2 = styled(Wrapper)`
     display: flex;
-    height: 50px;
-    background: lightblue;
-    justify-content: center;
+    height: 40px;
+    background: ${Colors.white};
+    box-shadow: 1px 5px 10px lightgrey;
 `;
 
 const InnerWrapper = styled.div`
     display: flex;
-    justify-content: center;
     width: 100%;
-    height: 25px;
-    background: lightblue;
+    height: 30px;
+    background: ${Colors.white};
 `;
 
 const RightIcons = styled.div`
     padding-left: 600px;
     display: flex;
+    margin-top: 10px;
 `;
 
 const LeftIcons = styled.div`
+    margin-left: 15px;
+    margin-top: 10px;
 `;
 
 
 const InputWrapper = styled.div`
     display: flex;
     padding-left: 500px;
+    margin-top: 5px;
+    height: 30px;
 `;
 
 const CustomImg = styled.img`
@@ -41,9 +45,16 @@ const CustomImg = styled.img`
 const CustomInput = styled.input`
     text-align: center;
     width: 500px;
-    background: ${Colors.white};
+    background: url(./media/icons/search.png) no-repeat;
+    background-position: right;
+    border-width: 1px;
+    border-color: lightgrey;
 `;
 
+const ExpanMenu = styled.div`
+    padding-right: 20px;
+    margin-top: 10px;
+`;
 
 export const TopNav: FC = () =>{
     return(
@@ -52,12 +63,11 @@ export const TopNav: FC = () =>{
                 <LeftIcons>
                     <CustomImg src="./media/icons/house2.png" />
                 </LeftIcons>
-                <div>
+                <ExpanMenu>
                     <ExpandedMenu />
-                </div>
+                </ExpanMenu>
                 <InputWrapper>
-                    <CustomInput type="text" value="Search Legalcluster" />
-                    <CustomImg src="./media/icons/search.png" alt="" title="" />
+                    <CustomInput type="text" placeholder="Search Legalcluster" />
                 </InputWrapper>
                 <RightIcons>
                     <CustomImg src="./media/icons/house.png" />
