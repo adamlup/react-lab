@@ -33,7 +33,7 @@ const LeftIcons = styled.div`
 
 const InputWrapper = styled.div`
     display: flex;
-    padding-left: 500px;
+    margin-left: 300px;
     margin-top: 5px;
     height: 30px;
 `;
@@ -52,8 +52,8 @@ const CustomInput = styled.input`
 `;
 
 const ExpanMenu = styled.div`
-    padding-right: 20px;
     margin-top: 10px;
+    margin-left: 200px;
 `;
 
 export const TopNav: FC = () =>{
