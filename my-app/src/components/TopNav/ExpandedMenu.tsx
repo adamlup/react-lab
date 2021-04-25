@@ -1,6 +1,13 @@
 import { FC } from "React";
 import useDropdown from "react-dropdown-hook";
 import styled from "styled-components";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { RouteTest } from '../TopNav/RouteTest';
 
 export const ExpandedMenu: FC = () => {
   const [
@@ -49,17 +56,25 @@ export const ExpandedMenu: FC = () => {
         {dropdownOpen && (
           <>
             {
+              <Router>
               <StyledUl>
                 <StyledLi>
-                  <StyledLink>1</StyledLink>
+                  <Link to ="/">Home</Link>
                 </StyledLi>
                 <StyledLi>
-                  <StyledLink>2</StyledLink>
+                  <Link to ="/about">route</Link>
                 </StyledLi>
                 <StyledLi>
-                  <StyledLink>3</StyledLink>
+                  <Link to ="/users">users</Link>
+                </StyledLi>
+                <StyledLi>
+                  <StyledLink>4</StyledLink>
+                </StyledLi>
+                <StyledLi>
+                  <StyledLink>5</StyledLink>
                 </StyledLi>
               </StyledUl>
+              </Router>
             }
           </>
         )}
