@@ -27,11 +27,15 @@ const HomePage: FC = () => {
                 <LeftMenu />
                 <Router>
                 <Switch>
+
                   <Route path="/about">
-                    <RouteTest />
+                    <About />
                   </Route>
                   <Route path="/users">
                     <Users />
+                  </Route>
+                  <Route path="/test">
+                    <RouteTest />
                   </Route>
                   <Route path="/">
                     <Home />
@@ -47,12 +51,16 @@ export default HomePage;
 
 function Home() {
     return <h2>Home</h2>;
-  }
+}
   
-  function About() {
+function About() {
     return <h2>About</h2>;
-  }
+}
   
-  function Users() {
+function Users() {
     return <h2>Users</h2>;
-  }
+}
+
+// function RouteTest(){
+//     return <h2>TEST</h2>;
+// }

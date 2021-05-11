@@ -1,4 +1,4 @@
-import { FC } from "React";
+import { FC, useState, ChangeEvent } from "react";
 import useDropdown from "react-dropdown-hook";
 import styled from "styled-components";
 import {
@@ -44,6 +44,13 @@ export const ExpandedMenu: FC = () => {
     text-align: center;
   `;
 
+  const [inputText, setInputText] = useState<string>('');
+
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value;
+    setInputText(text);
+  }
+
   return (
     <div>
       <div ref={wrapperRef}>
@@ -52,6 +59,13 @@ export const ExpandedMenu: FC = () => {
             <p>Home</p>
             <img src="./media/icons/arrow-down.png" alt="arrow down" />
           </button>
+          <input type="text" value={inputText} onChange={inputHandler} />
+              {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
+                <div>Home</div>
+              }
+              {'Publication'.toLowerCase().includes(inputText.toLowerCase()) &&
+                <div>Publication</div>
+              }
         </div>
         {dropdownOpen && (
           <>
@@ -62,13 +76,13 @@ export const ExpandedMenu: FC = () => {
                   <Link to ="/">Home</Link>
                 </StyledLi>
                 <StyledLi>
-                  <Link to ="/about">route</Link>
+                  <Link to ="/about">about</Link>
                 </StyledLi>
                 <StyledLi>
                   <Link to ="/users">users</Link>
                 </StyledLi>
                 <StyledLi>
-                  <StyledLink>4</StyledLink>
+                  <Link to ="/test">test</Link>
                 </StyledLi>
                 <StyledLi>
                   <StyledLink>5</StyledLink>
