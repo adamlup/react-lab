@@ -9,7 +9,7 @@ const Wrapper2 = styled(Wrapper)`
 `;
 
 const InnerWrapper = styled.div`
-    width: 200px;
+    width: 12%;
     margin-top: 15px;
     background: ${Colors.white};
 `;

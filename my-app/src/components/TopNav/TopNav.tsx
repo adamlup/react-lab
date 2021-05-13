@@ -4,12 +4,9 @@ import styled from 'styled-components';
 import { Wrapper } from '../../styledHelpers/Components';
 import { Colors } from '../../styledHelpers/Colors';
 import { ExpandedMenu } from './ExpandedMenu';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+
+import useDropdown from "react-dropdown-hook";
+import { Link } from "react-router-dom";
 
 
 const Wrapper2 = styled(Wrapper)`
@@ -40,7 +37,7 @@ const LeftIcons = styled.div`
 
 const InputWrapper = styled.div`
     display: flex;
-    margin-left: 300px;
+    margin-left: 500px;
     margin-top: 5px;
     height: 30px;
 `;
@@ -60,7 +57,7 @@ const CustomInput = styled.input`
 
 const ExpanMenu = styled.div`
     margin-top: 10px;
-    margin-left: 200px;
+    margin-left: 100px;
 `;
 
 export const TopNav: FC = () =>{
@@ -71,7 +68,7 @@ export const TopNav: FC = () =>{
                     <CustomImg src="./media/icons/house2.png" />
                 </LeftIcons>
                 <ExpanMenu>
-                    <ExpandedMenu />
+                        <ExpandedMenu />
                 </ExpanMenu>
                 <InputWrapper>
                     <CustomInput type="text" placeholder="Search Legalcluster" />

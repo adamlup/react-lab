@@ -7,7 +7,86 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { RouteTest } from '../TopNav/RouteTest';
+
+import { Colors } from "../../styledHelpers/Colors";
+
+const Wrapper = styled.div`
+  position: absolute;
+  background-color: ${Colors.white};
+  border-radius: 0 0 4px 4px;
+  border: solid ${Colors.gray};
+  box-shadow: 0px 1px 3px ${Colors.gray};
+  border-width: 0 1px 1px 1px;
+  width: 300px;
+  height: 25px;
+`;
+
+const SectionTitle = styled.span`
+  font-size: 15px;
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+  background-color: ${Colors.white};
+`;
+
+const OptionsWrapper = styled.div`
+  height: 350px;
+  overflow: auto;
+  padding: 10px;
+  background-color: ${Colors.white};
+`;
+
+const AccountOptionsWrapper = styled.div`
+  padding: 10px;
+`;
+
+const LogoutButtonWrapper = styled.span`
+  position: relative;
+
+  img {
+    position: absolute;
+    margin-top: 23px;
+    margin-left: 90px;
+  }
+`;
+
+const LogoutButton = styled.span`
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+`;
+
+
+const StyledButton = styled.button`
+  width: 300px;
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+
+  img{
+    align-items: right;
+  }
+`;
+
+const StyledUl = styled.ul`
+  width: 138px;
+  padding: 1px 6px;
+  background: lightgrey;
+  border-radius: 15px;
+  margin-top: 5px;
+`;
+
+const StyledLi = styled.li`
+  padding: 7px;
+  display: flex;
+`;
 
 export const ExpandedMenu: FC = () => {
   const [
@@ -17,33 +96,6 @@ export const ExpandedMenu: FC = () => {
     closeDropdown,
   ] = useDropdown();
 
-  const StyledLink = styled.a`
-    text-decoration: none;
-    color: black;
-  `;
-
-  const styledButton = {
-    width: "150px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    background: "transparent",
-    border: "none",
-  };
-
-  const StyledUl = styled.ul`
-    width: 138px;
-    padding: 1px 6px;
-    background: lightgrey;
-    border-radius: 15px;
-    margin-top: 5px;
-  `;
-
-  const StyledLi = styled.li`
-    padding: 10px 0;
-    text-align: center;
-  `;
-
   const [inputText, setInputText] = useState<string>('');
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,48 +104,172 @@ export const ExpandedMenu: FC = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <div ref={wrapperRef}>
-        <div onClick={toggleDropdown}>
-          <button style={styledButton}>
+         <div onClick={toggleDropdown}>
+          <StyledButton>
             <p>Home</p>
             <img src="./media/icons/arrow-down.png" alt="arrow down" />
-          </button>
-          <input type="text" value={inputText} onChange={inputHandler} />
-              {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
-                <div>Home</div>
-              }
-              {'Publication'.toLowerCase().includes(inputText.toLowerCase()) &&
-                <div>Publication</div>
-              }
-        </div>
-        {dropdownOpen && (
-          <>
-            {
-              <Router>
-              <StyledUl>
-                <StyledLi>
-                  <Link to ="/">Home</Link>
-                </StyledLi>
-                <StyledLi>
-                  <Link to ="/about">about</Link>
-                </StyledLi>
-                <StyledLi>
-                  <Link to ="/users">users</Link>
-                </StyledLi>
-                <StyledLi>
-                  <Link to ="/test">test</Link>
-                </StyledLi>
-                <StyledLi>
-                  <StyledLink>5</StyledLink>
-                </StyledLi>
-              </StyledUl>
+          </StyledButton>
+         </div>
+         {dropdownOpen && (
+           <>
+           
+      <FilterWrapper>
+        <input type="text" value={inputText} onChange={inputHandler} placeholder="Filter..."></input>
+      </FilterWrapper>
+      <Router>
+      <OptionsWrapper>
+        <SectionTitle>Platform</SectionTitle>
+          <StyledUl>
+            <StyledLi>
+            {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/">
+                <img src="./media/icons/house.svg" />
+                Home
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+            {'Publications'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/test">
+                <img src="./media/icons/publications.svg" />
+                Publications
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+            {'People'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/test">
+                <img src="./media/icons/people.svg" />
+                People
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+            {'Entities'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/entities">
+                <img src="./media/icons/entities.svg" />
+                Entities
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+            {'Administration'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/test">
+                <img src="./media/icons/administration.svg" />
+                Administration
+              </Link>}
+            </StyledLi>
+          </StyledUl>
+          <SectionTitle>Workspaces</SectionTitle>
+            <StyledLi>
+            {'Client contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/workspace">
+                <img src="./media/icons/entities2.svg" />
+                Client contract
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+            {'Supplier contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/workspace">
+                <img src="./media/icons/house2.svg" />
+                Supplier contract
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+            {'Corporate'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/workspace">
+                <img src="./media/icons/entities.svg" />
+                Corporate
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+            {'Group Norms'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/workspace">
+                <img src="./media/icons/house.svg" />
+                Group Norms
+              </Link>}
+            </StyledLi>
+            <StyledLi>
+              {'Real estate contracts'.toLowerCase().includes(inputText.toLowerCase()) &&
+              <Link to="/workspace">
+                <img src="./media/icons/house.svg" />
+                Real estate contracts
+              </Link>}
+            </StyledLi>
+            </OptionsWrapper>
+            <AccountOptionsWrapper>
+              <SectionTitle>Account</SectionTitle>
+              <StyledLi>
+              {'User name'.toLowerCase().includes(inputText.toLowerCase()) &&
+                <Link to="/profile">
+                  <img src="./media/icons/house.svg" />
+                  User name
+                </Link>}
+              </StyledLi>
+              <StyledLi>
+              {'Privacy'.toLowerCase().includes(inputText.toLowerCase()) &&
+                <Link to="/profile">
+                  <img src="./media/icons/privacy.svg" />
+                  Privacy
+                </Link>}
+              </StyledLi>
+              <StyledLi>
+              {'Settings'.toLowerCase().includes(inputText.toLowerCase()) &&
+                <Link to="/profile">
+                  <img src="./media/icons/settings.svg" />
+                  Settings
+                </Link>}
+              </StyledLi>
+            </AccountOptionsWrapper>
+              <LogoutButtonWrapper>
+                <img src="./media/icons/logout.svg" />
+                <LogoutButton>
+                  <Link to="/test">Logout</Link>
+                </LogoutButton>
+              </LogoutButtonWrapper>
               </Router>
-            }
-          </>
-        )}
-      </div>
-      <div onClick={closeDropdown}></div>
-    </div>
+              
+              </>
+              )}
+        </div>
+              <div onClick={closeDropdown}></div>
+    </Wrapper>
   );
 };
+
+//     <div>
+//       <div ref={wrapperRef}>
+//         <div onClick={toggleDropdown}>
+//           <button style={styledButton}>
+//             <p>Home</p>
+//             <img src="./media/icons/arrow-down.png" alt="arrow down" />
+//           </button>
+
+//         </div>
+//         {dropdownOpen && (
+//           <>
+//             {
+//               <Router>
+//                 <input type="text" value={inputText} onChange={inputHandler} />
+//                 <StyledUl>
+//                   <StyledLi>
+//                       {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
+//                       <Link to ="/">Home</Link> }
+//                   </StyledLi>
+//                   <StyledLi>
+//                       {'Publication'.toLowerCase().includes(inputText.toLowerCase()) &&
+//                       <Link to ="/publication">Publication</Link>}
+//                   </StyledLi>
+//                   <StyledLi>
+//                       {'About'.toLowerCase().includes(inputText.toLowerCase()) &&
+//                       <Link to ="/about">about</Link>}
+//                   </StyledLi>
+//                 </StyledUl>
+//               </Router>
+//             }
+//           </>
+//         )}
+//       </div>
+//       <div onClick={closeDropdown}></div>
+//     </div>
+    
+//   );
+// };

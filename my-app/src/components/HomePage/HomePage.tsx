@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
-
+import { Colors } from "../../styledHelpers/Colors";
 import { TopNav } from '../TopNav/TopNav';
 import { LeftMenu } from  '../LeftMenu/LeftMenu';
 import {
@@ -9,36 +9,50 @@ import {
     Route,
     Link
   } from "react-router-dom";
-
-import { RouteTest } from '../TopNav/RouteTest';
-
+import { LatestPublications } from "./LatestPublications";
+import { Workspaces } from "./Workspace";
+import { ResumeYourWork } from "./ResumeYourWork";
 
 const Content = styled.div`
-    max-width: 1200px;
-    align-items: center;
-    display: flex;
+  margin: 20px;
+  border-radius: 5px;
+  width: 100%;
+  display: block;
+  box-shadow: 0px 1px 3px ${Colors.gray};
+  padding: 20px;
+`;
+
+const MainContent = styled.div`
+    width: 100%;
+    margin-left: 15px;
 `;
 
 const HomePage: FC = () => {
     return(
         <>
             <TopNav />
+            <LeftMenu />
             <Content>
-                <LeftMenu />
+                
+                <LatestPublications />
+                <Workspaces />
+                <ResumeYourWork />
                 <Router>
                 <Switch>
-
                   <Route path="/about">
-                    <About />
+                    <MainContent>
+                      
+                    </MainContent>
                   </Route>
-                  <Route path="/users">
-                    <Users />
-                  </Route>
-                  <Route path="/test">
-                    <RouteTest />
+                  <Route path="/publication">
+                    <MainContent>
+                      
+                    </MainContent>
                   </Route>
                   <Route path="/">
-                    <Home />
+                    <MainContent>
+                      
+                    </MainContent>
                   </Route>
                 </Switch>
                 </Router>
@@ -48,19 +62,3 @@ const HomePage: FC = () => {
 };
 
 export default HomePage;
-
-function Home() {
-    return <h2>Home</h2>;
-}
-  
-function About() {
-    return <h2>About</h2>;
-}
-  
-function Users() {
-    return <h2>Users</h2>;
-}
-
-// function RouteTest(){
-//     return <h2>TEST</h2>;
-// }
