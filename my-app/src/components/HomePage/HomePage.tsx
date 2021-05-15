@@ -29,35 +29,11 @@ const MainContent = styled.div`
 
 const HomePage: FC = () => {
     return(
-        <>
-            <TopNav />
-            <LeftMenu />
-            <Content>
-                
-                <LatestPublications />
-                <Workspaces />
-                <ResumeYourWork />
-                <Router>
-                <Switch>
-                  <Route path="/about">
-                    <MainContent>
-                      
-                    </MainContent>
-                  </Route>
-                  <Route path="/publication">
-                    <MainContent>
-                      
-                    </MainContent>
-                  </Route>
-                  <Route path="/">
-                    <MainContent>
-                      
-                    </MainContent>
-                  </Route>
-                </Switch>
-                </Router>
-            </Content>
-        </>
+      <Content>
+          <LatestPublications />
+          <Workspaces />
+          <ResumeYourWork />
+      </Content>
     );
 };
 

@@ -82,3 +82,5 @@ export const TopNav: FC = () =>{
         </Wrapper2>
     );
 };
+
+export default TopNav;

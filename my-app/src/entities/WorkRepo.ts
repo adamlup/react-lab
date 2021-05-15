@@ -4,9 +4,12 @@ import { Repository } from "./Repository";
 export class WorkRepo implements Repository<Work> {
     public getAll(): Work[] {
         return [
-            new Work("Good work", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Business", "05.05.1995"),
-            new Work("Bad work", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Entertainment", "06.06.1996"),
-            new Work("Super work", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Money", "07.07.1997"),
+            new Work("Contract #145", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Corporate", "Updated 3 days ago by John Doe"),
+            new Work("Contract #145", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Supplier contract", "Updated 3 days ago by John Doe"),
+            new Work("Contract #145", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Client contract", "Updated 3 days ago by John Doe"),
+            new Work("Contract #145", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Client contract", "Updated 3 days ago by John Doe"),
+            new Work("Contract #145", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Client contract", "Updated 3 days ago by John Doe"),
+            new Work("Contract #145", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Client contract", "Updated 3 days ago by John Doe"),
         ];
     }
 }

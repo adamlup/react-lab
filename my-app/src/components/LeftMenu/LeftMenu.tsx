@@ -95,3 +95,5 @@ export const LeftMenu: FC = () => {
         </InnerWrapper>
     );
 };
+
+export default LeftMenu;
