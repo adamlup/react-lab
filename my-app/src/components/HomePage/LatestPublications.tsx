@@ -16,7 +16,7 @@ const LatestPublicationsWrapper = styled.div`
 
 const LatestPublicationFeatured = styled.div`
   position: relative;
-  background-image: url("./media/icons/placeholder2.png");
+  // background-image: url("./media/icons/placeholder2.png");
   background-size: auto;
   background-repeat: no-repeat;
   background-size: 430px;

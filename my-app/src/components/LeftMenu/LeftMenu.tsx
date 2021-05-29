@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Wrapper } from '../../styledHelpers/Components';
 import { Colors } from '../../styledHelpers/Colors';
+// import { Profile } from "../ProfilePage/Profile";
 
 const Wrapper2 = styled(Wrapper)`
     height: 100px;
@@ -63,7 +64,12 @@ const ProfileJob = styled.div`
     text-align: center;
 `;
 
-export const LeftMenu: FC = () => {
+export const LeftMenu: FC = () => {  
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
+
     return(
         <InnerWrapper>
                 <Profile>

@@ -114,7 +114,6 @@ export const ExpandedMenu: FC = () => {
          </div>
          {dropdownOpen && (
            <>
-           
       <FilterWrapper>
         <input type="text" value={inputText} onChange={inputHandler} placeholder="Filter..."></input>
       </FilterWrapper>
@@ -235,41 +234,4 @@ export const ExpandedMenu: FC = () => {
   );
 };
 
-//     <div>
-//       <div ref={wrapperRef}>
-//         <div onClick={toggleDropdown}>
-//           <button style={styledButton}>
-//             <p>Home</p>
-//             <img src="./media/icons/arrow-down.png" alt="arrow down" />
-//           </button>
-
-//         </div>
-//         {dropdownOpen && (
-//           <>
-//             {
-//               <Router>
-//                 <input type="text" value={inputText} onChange={inputHandler} />
-//                 <StyledUl>
-//                   <StyledLi>
-//                       {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
-//                       <Link to ="/">Home</Link> }
-//                   </StyledLi>
-//                   <StyledLi>
-//                       {'Publication'.toLowerCase().includes(inputText.toLowerCase()) &&
-//                       <Link to ="/publication">Publication</Link>}
-//                   </StyledLi>
-//                   <StyledLi>
-//                       {'About'.toLowerCase().includes(inputText.toLowerCase()) &&
-//                       <Link to ="/about">about</Link>}
-//                   </StyledLi>
-//                 </StyledUl>
-//               </Router>
-//             }
-//           </>
-//         )}
-//       </div>
-//       <div onClick={closeDropdown}></div>
-//     </div>
-    
-//   );
-// };
+export default ExpandedMenu;
