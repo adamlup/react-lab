@@ -97,8 +97,8 @@ export const LeftMenu: FC = () => {
         <UserImage src="https://via.placeholder.com/200/b02631?text=profile+pic" />
         <Link to="/profile" >
           <UserInfoContainer>
-          <UserName>{users.userList[1]?.name}</UserName>
-          <UserJobTitle>{users.userList[1]?.company.name}</UserJobTitle>
+          <UserName>{users.userList[0]?.name}</UserName>
+          <UserJobTitle>{users.userList[0]?.company.name}</UserJobTitle>
           </UserInfoContainer>
         </Link>
         <Line />

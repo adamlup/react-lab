@@ -95,13 +95,13 @@ export const LatestPublications: FC = () => {
         <LatestPublicationFeaturedFooter>
           {
             <div>
-              <Title>{posts.postsList[1]?.title}</Title>
+              <Title>{posts.postsList[0]?.title}</Title>
               <span>7 jan. 2020</span>
               <ProfilePhoto src="https://via.placeholder.com/100.png/fe7811" />
               <span>
                 {
                   users.userList.find(
-                    (user) => user.id === posts.postsList[1].userId
+                    (user) => user.id === posts.postsList[0].userId
                   )?.name
                 }
               </span>
