@@ -1,5 +1,5 @@
 import { ISingleComment } from '../entities/ISingleComment';
-import * as actionTypes from '../actions/actionTypes/commentTypes';
+import * as actionTypes from '../actions/actionTypes/CommentTypes';
 
 export interface ICommentReducer {
     commentsList: ISingleComment[];

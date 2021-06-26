@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import * as actionTypes from './actionTypes/UserTypes';
 import { ISingleUser } from '../entities/ISingleUser';
 
-export const getUsers = (): Promise<ISingleUser[]> => ((dispatch: Dispatch) => {
+export const GetUsers = (): Promise<ISingleUser[]> => ((dispatch: Dispatch) => {
     return fetch('https://jsonplaceholder.typicode.com/users')
         .then(reponse => reponse.json())
         .then((usersList: ISingleUser[]) => {

@@ -1,14 +1,7 @@
-import { FC, useState, ChangeEvent } from "react";
-import useDropdown from "react-dropdown-hook";
+import React, { ChangeEvent, FC, useState } from "react";
 import styled from "styled-components";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
 import { Colors } from "../../styledHelpers/Colors";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -17,8 +10,20 @@ const Wrapper = styled.div`
   border: solid ${Colors.gray};
   box-shadow: 0px 1px 3px ${Colors.gray};
   border-width: 0 1px 1px 1px;
+  margin: 60px 0 0 0;
   width: 300px;
-  height: 25px;
+  z-index: 99;
+
+  ul {
+    li {
+      padding: 7px;
+      display: flex;
+    }
+  }
+
+  img {
+    margin-right: 15px;
+  }
 `;
 
 const SectionTitle = styled.span`
@@ -29,209 +34,190 @@ const FilterWrapper = styled.div`
   display: flex;
   width: 100%;
   margin: auto;
+  align-items: center;
   justify-content: center;
-  background-color: ${Colors.white};
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid ${Colors.gray};
+    border-radius: 5px;
+    outline: none;
+  }
 `;
 
 const OptionsWrapper = styled.div`
   height: 350px;
   overflow: auto;
   padding: 10px;
-  background-color: ${Colors.white};
 `;
 
 const AccountOptionsWrapper = styled.div`
+  border-top: 1px solid ${Colors.gray};
+  border-bottom: 1px solid ${Colors.gray};
   padding: 10px;
 `;
 
 const LogoutButtonWrapper = styled.span`
   position: relative;
+  display: flex;
+  align-items: center;
 
   img {
-    position: absolute;
-    margin-top: 23px;
-    margin-left: 90px;
+    margin-left: 70px;
+    padding: 20px 0px 20px 20px;
   }
 `;
 
 const LogoutButton = styled.span`
-  display: flex;
   justify-content: center;
-  padding: 20px;
-`;
-
-
-const StyledButton = styled.button`
-  width: 300px;
-  height: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: transparent;
-  border: none;
-
-  img{
-    align-items: right;
-  }
-`;
-
-const StyledUl = styled.ul`
-  width: 138px;
-  padding: 1px 6px;
-  background: lightgrey;
-  border-radius: 15px;
-  margin-top: 5px;
-`;
-
-const StyledLi = styled.li`
-  padding: 7px;
-  display: flex;
 `;
 
 export const ExpandedMenu: FC = () => {
-  const [
-    wrapperRef,
-    dropdownOpen,
-    toggleDropdown,
-    closeDropdown,
-  ] = useDropdown();
-
-  const [inputText, setInputText] = useState<string>('');
+  const [inputText, setInputText] = useState<string>("");
 
   const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
     setInputText(text);
-  }
+  };
 
   return (
     <Wrapper>
-      <div ref={wrapperRef}>
-         <div onClick={toggleDropdown}>
-          <StyledButton>
-            <p>Home</p>
-            <img src="./media/icons/arrow-down.png" alt="arrow down" />
-          </StyledButton>
-         </div>
-         {dropdownOpen && (
-           <>
       <FilterWrapper>
-        <input type="text" value={inputText} onChange={inputHandler} placeholder="Filter..."></input>
+        <input
+          type="text"
+          value={inputText}
+          onChange={inputHandler}
+          placeholder="Filter..."
+        ></input>
       </FilterWrapper>
-      <Router>
       <OptionsWrapper>
         <SectionTitle>Platform</SectionTitle>
-          <StyledUl>
-            <StyledLi>
-            {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
+        <ul>
+          {"Home".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/">
                 <img src="./media/icons/house.svg" />
                 Home
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-            {'Publications'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"Publications".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/test">
                 <img src="./media/icons/publications.svg" />
                 Publications
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-            {'People'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"People".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/test">
                 <img src="./media/icons/people.svg" />
                 People
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-            {'Entities'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"Entities".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/entities">
                 <img src="./media/icons/entities.svg" />
                 Entities
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-            {'Administration'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"Administration".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/test">
                 <img src="./media/icons/administration.svg" />
                 Administration
-              </Link>}
-            </StyledLi>
-          </StyledUl>
-          <SectionTitle>Workspaces</SectionTitle>
-            <StyledLi>
-            {'Client contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+        </ul>
+        <SectionTitle>Workspaces</SectionTitle>
+        <ul>
+          {"Client contract".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/workspace">
                 <img src="./media/icons/entities2.svg" />
                 Client contract
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-            {'Supplier contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"Supplier contract".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/workspace">
                 <img src="./media/icons/house2.svg" />
                 Supplier contract
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-            {'Corporate'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"Corporate".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/workspace">
                 <img src="./media/icons/entities.svg" />
                 Corporate
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-            {'Group Norms'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"Group Norms".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/workspace">
                 <img src="./media/icons/house.svg" />
                 Group Norms
-              </Link>}
-            </StyledLi>
-            <StyledLi>
-              {'Real estate contracts'.toLowerCase().includes(inputText.toLowerCase()) &&
+              </Link>
+            </li>
+          )}
+          {"Real estate contracts".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
               <Link to="/workspace">
                 <img src="./media/icons/house.svg" />
                 Real estate contracts
-              </Link>}
-            </StyledLi>
-            </OptionsWrapper>
-            <AccountOptionsWrapper>
-              <SectionTitle>Account</SectionTitle>
-              <StyledLi>
-              {'User name'.toLowerCase().includes(inputText.toLowerCase()) &&
-                <Link to="/profile">
-                  <img src="./media/icons/house.svg" />
-                  User name
-                </Link>}
-              </StyledLi>
-              <StyledLi>
-              {'Privacy'.toLowerCase().includes(inputText.toLowerCase()) &&
-                <Link to="/profile">
-                  <img src="./media/icons/privacy.svg" />
-                  Privacy
-                </Link>}
-              </StyledLi>
-              <StyledLi>
-              {'Settings'.toLowerCase().includes(inputText.toLowerCase()) &&
-                <Link to="/profile">
-                  <img src="./media/icons/settings.svg" />
-                  Settings
-                </Link>}
-              </StyledLi>
-            </AccountOptionsWrapper>
-              <LogoutButtonWrapper>
-                <img src="./media/icons/logout.svg" />
-                <LogoutButton>
-                  <Link to="/test">Logout</Link>
-                </LogoutButton>
-              </LogoutButtonWrapper>
-              </Router>
-              
-              </>
-              )}
-        </div>
-              <div onClick={closeDropdown}></div>
+              </Link>
+            </li>
+          )}
+        </ul>
+      </OptionsWrapper>
+      <AccountOptionsWrapper>
+        <SectionTitle>Account</SectionTitle>
+        <ul>
+          {"Profile".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
+              <Link to="/profile">
+                <img src="./media/icons/house.svg" />
+                User name
+              </Link>
+            </li>
+          )}
+          {"Privacy".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
+              <Link to="/profile">
+                <img src="./media/icons/privacy.svg" />
+                Privacy
+              </Link>
+            </li>
+          )}
+          {"Settings".toLowerCase().includes(inputText.toLowerCase()) && (
+            <li>
+              <Link to="/profile">
+                <img src="./media/icons/settings.svg" />
+              </Link>
+              Settings
+            </li>
+          )}
+        </ul>
+      </AccountOptionsWrapper>
+      {"Logout".toLowerCase().includes(inputText.toLowerCase()) && (
+        <LogoutButtonWrapper>
+          <img src="./media/icons/logout.svg" />
+          <LogoutButton>
+            <Link to="/test">Logout</Link>
+          </LogoutButton>
+        </LogoutButtonWrapper>
+      )}
     </Wrapper>
   );
 };
-
 export default ExpandedMenu;

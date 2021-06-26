@@ -1,27 +1,31 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Publication } from "../../entities/Publication";
-import { PublicaitonRepo } from "../../entities/PublicationRepo";
-import { Repository } from "../../entities/Repository";
 import { Colors } from "../../styledHelpers/Colors";
+import { IPostReducer } from "../../reducers/PostReducers";
+import { IUserReducer } from "../../reducers/UserReducers";
+import { useSelector } from "react-redux";
+import { IState } from "../../reducers";
 
 const LatestPublicationsWrapper = styled.div`
   display: flex;
-  justify-content: center;
   border-radius: 5px;
   box-shadow: 0px 1px 3px ${Colors.gray};
   margin: 20px 0px;
-  width: 100%;
+  background-color: ${Colors.white};
 `;
 
 const LatestPublicationFeatured = styled.div`
   position: relative;
-  // background-image: url("./media/icons/placeholder2.png");
-  background-size: auto;
+  background-image: url("https://via.placeholder.com/400/85b98d?text=Publication+Card");
   background-repeat: no-repeat;
-  background-size: 430px;
+  background-size: 1000px;
   width: 430px;
   height: 430px;
+  border-radius: 5px 0 0 5px;
+
+  span {
+    color: ${Colors.black};
+  }
 `;
 
 const LatestPublicationFeaturedFooter = styled.div`
@@ -45,7 +49,7 @@ const PublicationCard = styled.div`
 `;
 
 const Title = styled.p`
-  color: ${Colors.blue};
+  color: ${Colors.black};
   font-size: 20px;
 `;
 
@@ -54,6 +58,7 @@ const CardDetails = styled.div`
   position: relative;
   padding: 10px;
   width: 100%;
+  color: ${Colors.black};
 `;
 
 const CardFooter = styled.div`
@@ -65,44 +70,56 @@ const CardFooter = styled.div`
 const Image = styled.img`
   width: 100px;
   height: 100px;
+  object-fit: cover;
 `;
 
-const Icon = styled.img`
-  width: 15px;
+const ProfilePhoto = styled.img`
+  width: 20px;
   vertical-align: middle;
   margin: 0 5px;
+  border-radius: 50%;
 `;
 
-function publications(): Publication[] {
-  let data: Repository<Publication> = new PublicaitonRepo();
-  return data.getAll();
-}
-
 export const LatestPublications: FC = () => {
+  const posts = useSelector<IState, IPostReducer>((state) => ({
+    ...state.posts,
+  }));
+
+  const users = useSelector<IState, IUserReducer>((state) => ({
+    ...state.users,
+  }));
+
   return (
     <LatestPublicationsWrapper>
       <LatestPublicationFeatured>
         <LatestPublicationFeaturedFooter>
           {
             <div>
-              <Title>{publications()[0].title}</Title>
-              {publications()[0].date}
-              {publications()[0].userName}
+              <Title>{posts.postsList[1]?.title}</Title>
+              <span>7 jan. 2020</span>
+              <ProfilePhoto src="https://via.placeholder.com/100.png/fe7811" />
+              <span>
+                {
+                  users.userList.find(
+                    (user) => user.id === posts.postsList[1].userId
+                  )?.name
+                }
+              </span>
             </div>
           }
         </LatestPublicationFeaturedFooter>
       </LatestPublicationFeatured>
       <LatestPublicationsRest>
         <Title>Latest Publications</Title>
-        {publications().map((p, i) => (
+        {posts.postsList.slice(49, 52).map((post, index) => (
           <PublicationCard>
-            <Image src="./media/icons/placeholder.png" />
+            <Image src="https://via.placeholder.com/500.png/36797e?text=publication+card" />
             <CardDetails>
-              <Title>{p.title}</Title>
+              <Title>{post.title}</Title>
               <CardFooter>
-                <p>
-                  {p.date} &bull; {p.userName}
-                </p>
+                7 jan. 2020
+                <ProfilePhoto src="https://via.placeholder.com/100.png/fe7811" />
+                {users.userList.find((user) => user.id === post.userId)?.name}
               </CardFooter>
             </CardDetails>
           </PublicationCard>

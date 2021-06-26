@@ -1,5 +1,5 @@
 import { ISingleUser } from '../entities/ISingleUser';
-import * as actionTypes from '../actions/actionTypes/userTypes';
+import * as actionTypes from '../actions/actionTypes/UserTypes';
 
 export interface IUserReducer {
     userList: ISingleUser[];

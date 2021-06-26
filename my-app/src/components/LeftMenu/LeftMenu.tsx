@@ -1,105 +1,140 @@
-import { FC } from 'react';
-import styled from 'styled-components';
+import { FC } from "react";
+import styled from "styled-components";
+import { Colors } from "../../styledHelpers/Colors";
+import { Link } from "react-router-dom";
+import { IUserReducer } from "../../reducers/UserReducers";
+import { useSelector } from "react-redux";
+import { IState } from "../../reducers";
 
-import { Wrapper } from '../../styledHelpers/Components';
-import { Colors } from '../../styledHelpers/Colors';
-// import { Profile } from "../ProfilePage/Profile";
-
-const Wrapper2 = styled(Wrapper)`
-    height: 100px;
+const LeftMenuWrapper = styled.div`
+  display: block;
+  margin: 20px;
+  color: ${Colors.blue};
 `;
 
-const InnerWrapper = styled.div`
-    width: 12%;
-    margin-top: 15px;
-    background: ${Colors.white};
+const Panel = styled.div`
+  margin-bottom: 15px;
+  border-radius: 5px;
+  width: 270px;
+  display: block;
+  text-align: center;
+  background-color: ${Colors.white};
+  box-shadow: 0px 1px 3px ${Colors.gray};
 `;
 
-const LowerIcons = styled.div`
-    align-items: center;
-    padding-top: 20px;
+const MenuOptionsWrapper = styled.div`
+  text-align: left;
+  font-size: 20px;
+
+  ul {
+    li {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      a {
+        color: ${Colors.black};
+        text-decoration: none;
+        transition: 0.2s;
+
+        :hover {
+          color: ${Colors.blue};
+          transition: 0.2s;
+        }
+      }
+    }
+  }
 `;
 
-const CustomImg = styled.img`
-    margin-left: 20px;
+const UserInfoContainer = styled.div`
+
+`
+
+const UserImage = styled.img`
+  width: 75px;
+  margin: 10px;
+  border-radius: 50%;
 `;
 
-const Profile = styled.div`
-    width: 200px;
-    background: white;
-    margin-left: 10px;
-    box-shadow: 1px 3px 5px lightgrey;
+const UserName = styled.span`
+  color: ${Colors.black};
+  font-size: 20px;
 `;
 
-const ProfileImg = styled.img``;
-
-
-const ProfileLeftIcons = styled.img`
-    padding-left: 10px;
+const UserJobTitle = styled.p`
+  color: ${Colors.gray};
+  font-size: 15px;
 `;
 
-const ProfileRightIcons = styled.img`
-    float:right;
+const Line = styled.hr`
+  background-color: ${Colors.gray};
+  color: ${Colors.gray};
+  width: 95%;
+  height: 1px;
+  border-width: 0px;
 `;
 
-const ProfileRightIconsContainer = styled.div`
-    float:right;
-    border: groove;
-    margin-right: 5px;
+const MenuIcon = styled.img`
+  margin: 10px;
 `;
 
-const ProfileImgContainer = styled.div`
-    height: 50px;
-    width: 50px;
-    background: black;
-    border-radius: 50%;
-    margin-left: 75px;
+const UserMenuIcon = styled.img`
+  border: 1px solid ${Colors.gray};
+  padding: 5px 15px;
+  border-radius: 5px;
+  margin: 10px;
+  margin-left: auto;
+  box-shadow: 0px 1px 3px ${Colors.gray};
 `;
 
-const ProfileName = styled.div`
-    text-align: center;
-`;
-
-const ProfileJob = styled.div`
-    text-align: center;
-`;
-
-export const LeftMenu: FC = () => {  
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then((response) => response.json())
-    .then((json) => console.log(json));
-
-
-    return(
-        <InnerWrapper>
-                <Profile>
-                    <ProfileImgContainer>
-                        
-                    </ProfileImgContainer>
-                    <ProfileName>Humberta Swift</ProfileName>
-                    <ProfileJob>Job title - Company</ProfileJob>
-                    <LowerIcons>
-                        <ProfileLeftIcons src="./media/icons/network.png" /> 
-                        Your Network    
-                        <ProfileRightIconsContainer><ProfileRightIcons src="./media/icons/user-plus.png" /></ProfileRightIconsContainer>
-                    </LowerIcons>
-                    <LowerIcons>
-                        <ProfileLeftIcons src="./media/icons/publications.png" /> 
-                        Your Publications     
-                        <ProfileRightIconsContainer><ProfileRightIcons src="./media/icons/plus.png" /> </ProfileRightIconsContainer>
-                    </LowerIcons>
-                </Profile>
-            <LowerIcons>
-                <CustomImg src="./media/icons/publications.png" /> Publications
-            </LowerIcons>
-            <LowerIcons>
-                <CustomImg src="./media/icons/ecosystem.png" /> Ecosystem
-            </LowerIcons>
-            <LowerIcons>
-                <CustomImg src="./media/icons/entities.png" /> Entities
-            </LowerIcons>
-        </InnerWrapper>
-    );
+export const LeftMenu: FC = () => {
+  const users = useSelector<IState, IUserReducer>((state) => ({
+    ...state.users,
+  }));
+  
+  return (
+    <LeftMenuWrapper>
+      <Panel>
+        <UserImage src="https://via.placeholder.com/200/b02631?text=profile+pic" />
+        <Link to="/profile" >
+          <UserInfoContainer>
+          <UserName>{users.userList[1]?.name}</UserName>
+          <UserJobTitle>{users.userList[1]?.company.name}</UserJobTitle>
+          </UserInfoContainer>
+        </Link>
+        <Line />
+        <MenuOptionsWrapper>
+          <ul>
+            <li>
+              <MenuIcon src="./media/icons/network.png" />
+              <Link to="/test">Your Network</Link>
+              <UserMenuIcon src="./media/icons/user-plus.svg" />
+            </li>
+            <li>
+              <MenuIcon src="./media/icons/publications.svg" />
+              <Link to="/test">Your Publications</Link>
+              <UserMenuIcon src="./media/icons/plus.svg" />
+            </li>
+          </ul>
+        </MenuOptionsWrapper>
+      </Panel>
+      <MenuOptionsWrapper>
+        <ul>
+          <li>
+            <MenuIcon src="./media/icons/publications.svg" />
+            <Link to="/test">Publications</Link>
+          </li>
+          <li>
+            <MenuIcon src="./media/icons/ecosystem.svg" />
+            <Link to="/test">Ecosystem</Link>
+          </li>
+          <li>
+            <MenuIcon src="./media/icons/entities.svg" />
+            <Link to="/entities">Entities</Link>
+          </li>
+        </ul>
+      </MenuOptionsWrapper>
+    </LeftMenuWrapper>
+  );
 };
 
 export default LeftMenu;

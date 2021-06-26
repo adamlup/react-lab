@@ -1,86 +1,122 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Workspace } from "../../entities/Workspace";
-import { WorkspaceRepo } from "../../entities/WorkspaceRepo";
-import { Repository } from "../../entities/Repository";
 import { Colors } from "../../styledHelpers/Colors";
+import { useSelector } from "react-redux";
+import { IState } from "../../reducers/index";
+import { ITodoReducer } from "../../reducers/TodoReducers";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  display: block;
+  margin-bottom: 20px;
 `;
 
 const WorkspacesWrapper = styled.div`
-  display: flex;
+  display: flexbox;
   padding: 20px 0px;
+  width: 1200px;
+  overflow: auto;
 `;
 
-const WorkspaceCard = styled.div`
+const CardContainer = styled.div`
   margin-right: 20px;
   border-radius: 5px;
-  display: flex;
-  width: 100%;
   box-shadow: 0px 1px 3px ${Colors.gray};
-  padding: 20px;
+  background-color: ${Colors.white};
+  width: 400px;
+  height: 250px;
+  color: ${Colors.black};
 
-  div {
-    display: block;
+  span {
+    margin-left: 15px;
   }
 `;
 
+const CardBackgroundImage = styled.img`
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+`;
+
+const CategoryCard = styled.div`
+  background-color: ${Colors.white};
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 3px ${Colors.gray};
+  margin-top: -35px;
+  margin-left: 15px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+`;
+
+const CategoryIcon = styled.img`
+  margin: auto;
+  width: 50px;
+`;
+
 const Title = styled.p`
-  color: ${Colors.blue};
+  color: ${Colors.black};
   font-size: 20px;
 `;
 
-const CardDetails = styled.div`
-  display: table-cell;
-  position: relative;
-  padding: 10px;
-  width: 100%;
+const CardTitle = styled.p`
+  color: ${Colors.black};
+  font-size: 20px;
+  margin-left: 125px;
+  margin-top: -55px;
+  height: 2ch;
 `;
 
-const CardFooter = styled.div`
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-`;
-
-const Image = styled.img`
-  width: 100px;
-  height: 100px;
+const CardDetails = styled.p`
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
 `;
 
 const Icon = styled.img`
-  width: 15px;
-  vertical-align: middle;
-  margin: 0 5px;
+  width: 20px;
+  margin: 0 15px;
 `;
 
-function workspaces(): Workspace[] {
-  let data: Repository<Workspace> = new WorkspaceRepo();
-  return data.getAll();
+function getRandomValue(max: number) {
+  return Math.ceil(Math.random() * max);
 }
 
 export const Workspaces: FC = () => {
+  const todos = useSelector<IState, ITodoReducer>((state) => ({
+    ...state.todos,
+  }));
+
   return (
     <Container>
       <Title>Workspaces</Title>
       <WorkspacesWrapper>
-        {workspaces().map((w, i) => (
-          <WorkspaceCard>
-            <Image src="./media/icons/placeholder4.png" />
+        {todos.todosList.slice(10, 25).map((todo, index) => (
+          <CardContainer>
+            <CardBackgroundImage src= "https://via.placeholder.com/350x150/00fff9?text=workspace+card" />
+            <CategoryCard>
+              <CategoryIcon src="./media/icons/ecosystem.svg" />
+            </CategoryCard>
+            <Link
+              to={"/workspace?id=" + todo.id}
+              style={{ textDecoration: "none" }}
+            >
+              <CardTitle>{todo.title}</CardTitle>
+            </Link>
             <CardDetails>
-              <Title>{w.title}</Title>
-              <CardFooter>
-                <p>
-                  <Icon src="./media/icons/entities.png" />
-                  {w.type} &bull; {w.numberOfUsers} &bull; {w.lastUpdated}
-                </p>
-              </CardFooter>
+              <Icon src="./media/icons/ecosystem.svg" />
+              Contract
+              <Icon src="./media/icons/people.svg" />
+              {getRandomValue(20)} users
             </CardDetails>
-          </WorkspaceCard>
+            <br />
+            <span>Last update {getRandomValue(10)} days ago</span>
+          </CardContainer>
         ))}
       </WorkspacesWrapper>
     </Container>
   );
 };
+
+export default Workspaces;
